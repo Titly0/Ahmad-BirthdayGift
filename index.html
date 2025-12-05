@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>For Ahmad — Happy Birthday💖</title>
+  <meta name="description" content="A birthday surprise website from Tasnima to Ahmad — our story, memories, letters and a birthday video.">
+  <style>
+    :root{
+      --bg:#fff7fb;
+      --card:#ffffffcc;
+      --accent:#ff6b9a;
+      --accent-2:#ffb3c6;
+      --text:#222;
+      --muted:#6b6b6b;
+      --glass: rgba(255,255,255,0.65);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;color:var(--text);background:linear-gradient(180deg,#fff 0%, #fff7fb 100%);}
+    header{position:fixed;left:0;right:0;top:0;display:flex;align-items:center;justify-content:space-between;padding:14px 20px;backdrop-filter:blur(6px);background:rgba(255,255,255,0.6);box-shadow:0 4px 18px rgba(0,0,0,0.06);z-index:30}
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;color:white;font-weight:700}
+    nav a{margin:0 8px;text-decoration:none;color:var(--muted);font-weight:600}
+    nav a.active{color:var(--accent)}
+    main{padding-top:92px;max-width:980px;margin:0 auto;padding-left:20px;padding-right:20px}
+
+    .hero{display:grid;grid-template-columns:1fr 360px;gap:28px;align-items:center;margin-bottom:28px}
+    .card{background:var(--card);border-radius:18px;padding:22px;box-shadow:0 8px 30px rgba(12,12,12,0.06)}
+    .title{font-size:26px;margin:0 0 6px}
+    .subtitle{color:var(--muted);margin:0 0 12px}
+
+    /* story styling */
+    .story p{line-height:1.6;margin:10px 0}
+
+    /* sections */
+    section{margin-bottom:22px}
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+
+    /* gallery */
+    .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.gallery img {
+  width: 100%;       /* make it fit container width */
+  height: auto;      /* keep original aspect ratio */
+  object-fit: contain; /* show full image without cropping */
+  border-radius: 12px;
+  background: #f3e9ef; /* optional: fallback background for transparency */
+}
+
+    /* open-when */
+    details summary{cursor:pointer;padding:12px;border-radius:10px;background:var(--glass);font-weight:600}
+    details div{padding:10px}
+
+    /* reasons list */
+    .reasons{display:flex;flex-wrap:wrap;gap:8px}
+    .reason{background:linear-gradient(180deg,#fff,#fff0);border-radius:10px;padding:10px 12px;min-width:140px;box-shadow:0 6px 18px rgba(0,0,0,0.04)}
+
+    /* messages box */
+    .msg-area textarea{width:100%;height:120px;padding:10px;border-radius:10px;border:1px solid #eee}
+    .btn{background:var(--accent);color:#fff;padding:8px 12px;border-radius:10px;border:none;font-weight:700;cursor:pointer}
+
+    /* video */
+    .video-wrap video{width:100%;border-radius:12px}
+
+    footer{padding:30px 20px;text-align:center;color:var(--muted)}
+
+    /* floating hearts */
+    .heart-layer{position:fixed;left:0;right:0;bottom:0;top:0;pointer-events:none;z-index:10}
+    .heart{position:absolute;width:36px;height:36px;transform:translate(-50%,-50%) scale(0.9);opacity:0.95;background:radial-gradient(circle at 35% 30%, #fff 0 6%, transparent 6%), linear-gradient(135deg,var(--accent),var(--accent-2));clip-path:polygon(50% 0, 63% 9%, 75% 9%, 88% 24%, 88% 39%, 75% 57%, 50% 84%, 25% 57%, 12% 39%, 12% 24%, 25% 9%, 37% 9%);} 
+    @keyframes floatUp{0%{transform: translateY(0) scale(0.9);opacity:1}100%{transform: translateY(-380px) scale(1.1);opacity:0}}
+
+    /* small responsive */
+    @media (max-width:900px){.hero{grid-template-columns:1fr;}.gallery{grid-template-columns:repeat(2,1fr)}.hero .card{order:2}}
+    @media (max-width:480px){.gallery img{height:90px}.brand .logo{width:36px;height:36px}}
+
+    /* page transitions (simple SPA) */
+    .page{display:none;animation:fade .35s ease both}
+    .page.show{display:block}
+    @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+    /* subtle floating bg hearts */
+    .bg-heart{position:absolute;filter:blur(6px);opacity:0.12}
+  </style>
+</head>
+<body>
+  <div id="lockScreen" style="
+  position:fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  background:#0d0d0d;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  z-index:9999;
+  color:white;
+  font-family:'Poppins', sans-serif;">
+  
+  <h2 style="margin-bottom:20px; font-size:24px;">Enter Our Secret Code 💗</h2>
+  
+  <input type="password" id="passInput" placeholder="Password" 
+    style="padding:10px 15px; border-radius:10px; border:none; outline:none; margin-bottom:15px; width:200px; text-align:center;">
+  
+  <button onclick="unlockSite()" 
+    style="padding:10px 20px; border:none; border-radius:10px; background:#ff4d6d; color:white; cursor:pointer; margin-bottom:10px;">
+    Unlock
+  </button>
+
+  <!-- Hint Button -->
+  <button onclick="showHint()" 
+    style="padding:5px 15px; border:none; border-radius:8px; background:#ffa3b1; color:white; cursor:pointer; font-size:14px;">
+    Show Hint 💭
+  </button>
+
+  <p id="hintMsg" style="color:#ffc0cb; margin-top:12px; display:none; font-size:14px;">
+    The date we thought we will marry 💍💗
+  </p>
+
+  <p id="wrongMsg" style="color:#ff6b81; margin-top:10px; display:none;">Wrong password, baby 😔</p>
+</div>
+
+<script>
+  function unlockSite(){
+    let pass = document.getElementById("passInput").value;
+    if(pass === "1810"){   // CHANGE PASSWORD HERE
+      document.getElementById("lockScreen").style.display = "none";
+    } else {
+      document.getElementById("wrongMsg").style.display = "block";
+    }
+  }
+
+  function showHint(){
+    document.getElementById("hintMsg").style.display = "block";
+  }
+</script>
+
+  <header>
+    <div class="brand">
+      <div class="logo">T♥A</div>
+      <div>
+        <div style="font-weight:800">For Ahmad</div>
+        <div style="font-size:12px;color:var(--muted)">From Tasnima — December 7</div>
+      </div>
+    </div>
+    <nav>
+      <a href="#" data-target="home" class="active">Home</a>
+      <a href="#" data-target="story">Our Story</a>
+      <a href="#" data-target="memories">Memories</a>
+      <a href="#" data-target="openwhen">Messages</a>
+      <a href="#" data-target="reasons">Reasons</a>
+    </nav>
+  </header>
+
+  <div class="heart-layer" id="heartLayer"></div>
+
+  <main>
+    <!-- Home / Landing -->
+    <section id="home" class="page show">
+      <div class="hero">
+        <div class="card">
+          <h1 class="title">Happy Birthday, My Love💖</h1>
+          <p class="subtitle">From your Bou — a little site full of our memories, letters, and all the reasons I love you.</p>
+          <div class="story">
+            <!-- full story text inserted here -->
+            <p><strong>October 1, 2023:</strong> The day our story began. You asked, I said yes. Our hearts started a journey that distance could not break.</p>
+            <p>From the first meeting to the first love letter, from quiet laughs to late-night calls across timezones — every moment is a treasure for me.</p>
+            <p style="margin-top:12px;font-weight:700">Click around, read, watch, and when you're done — press the pink heart at the bottom-right for a little surprise baby.</p>
+          </div>
+        </div>
+
+        <aside class="card">
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <div style="text-align:center">
+              <!-- placeholder for his photo -->
+              <img id="heroPhoto" src="d:\Ahmad\ChatGPT Image Dec 3, 2025, 09_33_19 PM.png" alt="Ahmad" style="width:100%;height:220px;border-radius:12px;object-fit:cover" onerror="this.style.display='none'">
+            </div>
+            <div>
+              <strong>First Meet</strong>
+              <p class="subtitle" style="margin:6px 0 0">That special first meet — when we felt the world slow down.</p>
+            </div>
+            
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Our Story -->
+    <section id="story" class="page">
+      <div class="card">
+        <h2>Our Love Story — Tasnima & Ahmad</h2>
+        <div style="margin-top:8px">
+          <p><strong>Chapter 1 — October 1, 2023</strong></p>
+          <p>It started on October — a day that will always belong to us. From there, romantic days bloomed into memories.</p>
+
+          <p><strong>Chapter 2 — The First Meet</strong></p>
+          <p>When we finally met, something clicked. It was soft, sincere, and the kind of moment that stays with us forever.</p>
+
+          <p><strong>Chapter 3 — The Letter</strong></p>
+          <p>The first love letter you gave me is kept like a treasure — a paper that carries your words and trust.</p>
+
+          <p><strong>Chapter 4 — The Distance</strong></p>
+          <p>When you went to China, distance tested us, but it couldn't break. Calls, messages, and the quiet promise of togetherness built a new, stronger love.</p>
+
+          <p><strong>Chapter 5 — The Future</strong></p>
+          <p>Someday we'll close the distance. Someday we'll hold hands without screens between us In Shaa Allah. Until then — every day, we both choose love.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Memories Gallery -->
+    <section id="memories" class="page">
+      <div class="card">
+        <h2>Memories Gallery</h2>
+        <p class="subtitle"></p>
+        <div class="gallery" id="gallery">
+          <img src="d:\Ahmad\IMG_20251203_105057_284.jpg" alt="memory1" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 200 120\'><rect width=\'100%\' height=\'100%\' fill=\'%23f3e9ef\' /><text x=\'50%\' y=\'50%\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23d09\' font-size=\'13\'>Add your photo</text></svg>'">
+          <img src="d:\Ahmad\IMG_20251203_100028_006.jpg" alt="memory2" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 200 120\'><rect width=\'100%\' height=\'100%\' fill=\'%23f3e9ef\' /><text x=\'50%\' y=\'50%\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23d09\' font-size=\'13\'>Add your photo</text></svg>'">
+          <img src="d:\Ahmad\ChatGPT Image Dec 4, 2025, 12_40_19 AM.png" alt="memory3" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 200 120\'><rect width=\'100%\' height=\'100%\' fill=\'%23f3e9ef\' /><text x=\'50%\' y=\'50%\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23d09\' font-size=\'13\'>Add your photo</text></svg>'">
+          <img src="d:\Ahmad\IMG_20251203_102427_055.jpg" alt="memory4" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 200 120\'><rect width=\'100%\' height=\'100%\' fill=\'%23f3e9ef\' /><text x=\'50%\' y=\'50%\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23d09\' font-size=\'13\'>Add your photo</text></svg>'">
+          <img src="d:\Ahmad\IMG_20251203_100156_324.jpg" alt="memory5" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 200 120\'><rect width=\'100%\' height=\'100%\' fill=\'%23f3e9ef\' /><text x=\'50%\' y=\'50%\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23d09\' font-size=\'13\'>Add your photo</text></svg>'">
+          <img src="d:\Ahmad\IMG_20251203_100230_646.jpg" alt="memory6" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 200 120\'><rect width=\'100%\' height=\'100%\' fill=\'%23f3e9ef\' /><text x=\'50%\' y=\'50%\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23d09\' font-size=\'13\'>Add your photo</text></svg>'">
+        </div>
+      </div>
+    </section>
+
+    <!-- Open When letters -->
+    <section id="openwhen" class="page">
+      <div class="card">
+        <h2>Open…</h2>
+        <p class="subtitle">Little letters for you jaan to open at special moments.</p>
+
+        <details>
+          <summary>Open when you miss me</summary>
+          <div>
+            <p>My love, when the distance feels heavy, read this and know I’m only a heartbeat away. Close your eyes and imagine my arms around you, holding you the way your soul understands. No miles, no borders, no silence can take away the closeness I feel with you.</p>
+          </div>
+        </details>
+        <details>
+  <summary>Open when you are happy</summary>
+  <div>
+    <p>Baby when your heart feels light and the world looks beautiful — remember that your happiness is my happiness too. Every smile you wear brightens my day, and every laugh you share fills my heart with joy. Even though distance separates us, I celebrate every happy moment with you in my thoughts. Keep shining, my love, because your joy makes everything better, and I’ll always be cheering for you, silently holding you close in my heart.</p>
+  </div>
+</details>
+
+
+
+        <details>
+  <summary>Open when you are sad</summary>
+  <div>
+    <p>Baby, if your heart feels heavy, come here. I’m holding you in every word — you’re never alone, my love. Even from miles away, I’m wrapping you in the gentlest warmth I have. Lean on me… breathe with me… let your heart rest. I’m always here, always yours. Close your eyes and feel me beside you, like a soft whisper in your ear, a gentle hand on your shoulder, a heartbeat that matches yours.</p>
+    <p>Let every worry drift away, let every fear melt into nothingness. Remember all the moments we’ve shared, every smile, every laugh, every quiet conversation — they’re all with you now, keeping you company. The distance may be long, but it can never touch the bond we have. You are my world, my heart, my everything. So when sadness comes, read this and know that I am right here, loving you endlessly, holding you safely in my arms even when I can’t be there physically.</p>
+  </div>
+</details>
+
+
+
+<details>
+<summary>Open when you are sleepy</summary>
+<div>
+Sleep with this thought in your heart: you are cherished, you are loved, and nothing will ever change that. My love follows you everywhere, through every lonely night and every restless day. I am yours, completely and forever, baby — and together, we can endure anything.</div>
+</details>
+
+      </div>
+    </section>
+
+    <!-- Reasons I Love You -->
+    <section id="reasons" class="page">
+  <div class="card">
+    <h2>Reasons I Love You</h2>
+    <div class="reasons" style="text-align: center; line-height: 1.6; font-size: 1.1rem;">
+      <p>There are no reasons needed to love you… not a single one.</p>
+      <p>My heart chose you long before I ever knew why — and maybe that’s the most beautiful part.</p>
+      <p>I don’t love you because of what you do or how you look or the things you say.</p>
+      <p>I love you because <em>you are you</em> — the one my soul recognized in a way my mind never could explain.</p>
+      <p>You are my calm, my warmth, my softness, my home.</p>
+      <p>You’re the feeling I never knew I was searching for… the peace I didn’t know my heart needed.</p>
+      <p>There are no reasons behind my love for you — because love like this doesn’t follow logic.</p>
+      <p>It just <em>lives</em>, quietly and deeply, inside me.</p>
+      <p>You are my everything, Baccha.</p>
+      <p>And I love you without any reason… just with all of me.</p>
+    </div>
+  </div>
+
+      <div class="card" style="margin-top:12px">
+        <h3>Message for You</h3>
+        <div class="msg-area">
+          <textarea id="msgText" placeholder="Write a message that Ahmad can read on this page (saved locally)"></textarea>
+          <div style="margin-top:8px;display:flex;gap:8px">
+            <button class="btn" id="saveMsg">Save Message</button>
+            <button class="btn" id="clearMsg" style="background:#ddd;color:#222">Clear</button>
+          </div>
+          <p id="msgSaved" style="color:green;display:none;margin-top:8px">Saved!</p>
+        </div>
+      </div>
+    </section>
+
+    
+
+  </main>
+
+  <footer>
+    <div style="display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap">
+      <div>Made with ❤️ by Tasnima</div>
+      <div style="font-size:13px;color:var(--muted)"></div>
+    </div>
+  </footer>
+
+  <!-- small floating heart button to trigger emoji hearts -->
+  <button id="loveBtn" title="Send love" style="position:fixed;right:18px;bottom:18px;background:linear-gradient(135deg,var(--accent),var(--accent-2));border:none;color:white;padding:14px;border-radius:999px;font-size:18px;cursor:pointer;box-shadow:0 12px 30px rgba(255,100,150,0.18)">💗</button>
+  <!-- Music Button -->
+<button id="musicBtn" style="position:fixed;right:18px;bottom:70px;background:var(--accent);color:white;padding:10px;border-radius:50%;border:none;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,0.1)">
+  🎵
+</button>
+<audio id="bgMusic" loop autoplay>
+  <source src="music/birthday_song.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+  <script>
+    const music = document.getElementById('bgMusic');
+  const musicBtn = document.getElementById('musicBtn');
+
+  musicBtn.addEventListener('click', ()=>{
+    if(music.paused){
+      music.play();
+      musicBtn.textContent = "🎵";
+    } else {
+      music.pause();
+      musicBtn.textContent = "🔇";
+    }
+  });
+    // --- Simple SPA navigation ---      
+    const links = document.querySelectorAll('nav a');
+    const pages = document.querySelectorAll('.page');
+    function showPage(id){
+      pages.forEach(p=>p.classList.remove('show'));
+      document.getElementById(id).classList.add('show');
+      links.forEach(l=>l.classList.remove('active'));
+      document.querySelector(`nav a[data-target='${id}']`).classList.add('active');
+      window.scrollTo({top:80,behavior:'smooth'});
+    }
+    links.forEach(a=>a.addEventListener('click',e=>{e.preventDefault();showPage(a.dataset.target)}));
+
+    // --- Message save (localStorage) ---
+    const saveBtn = document.getElementById('saveMsg');
+    const clearBtn = document.getElementById('clearMsg');
+    const msgText = document.getElementById('msgText');
+    const msgSaved = document.getElementById('msgSaved');
+    const STORAGE_KEY = 'tasnima_to_ahmad_msg';
+    // load
+    if(localStorage.getItem(STORAGE_KEY)){
+      msgText.value = localStorage.getItem(STORAGE_KEY);
+    }
+    saveBtn.addEventListener('click',()=>{
+      localStorage.setItem(STORAGE_KEY,msgText.value);
+      msgSaved.style.display='block';
+      setTimeout(()=>msgSaved.style.display='none',2200);
+    });
+    clearBtn.addEventListener('click',()=>{localStorage.removeItem(STORAGE_KEY);msgText.value='';});
+
+    // --- Heart animation generator ---
+    const heartLayer = document.getElementById('heartLayer');
+    function makeHeart(x,y){
+      const heart = document.createElement('div');
+      heart.className='heart';
+      heart.style.left = x+'px';
+      heart.style.top = y+'px';
+      heartLayer.appendChild(heart);
+      const dur = 3000 + Math.random()*1600;
+      heart.style.transition = `transform ${dur}ms cubic-bezier(.2,.7,.2,1), opacity ${dur}ms ease-out`;
+      requestAnimationFrame(()=>{
+        heart.style.transform = `translateY(-380px) scale(${1+Math.random()*0.4})`;
+        heart.style.opacity = '0';
+      });
+      setTimeout(()=>heart.remove(), dur+50);
+    }
+
+    // click heart button to burst some hearts
+    document.getElementById('loveBtn').addEventListener('click',()=>{
+      const rect = document.body.getBoundingClientRect();
+      for(let i=0;i<12;i++){
+        setTimeout(()=>{
+          const x = 20 + Math.random()*(rect.width-40);
+          const y = rect.height - 40 - Math.random()*120;
+          makeHeart(x,y);
+        }, i*80);
+      }
+      // small confetti of words
+    });
+
+    // make gentle floating hearts in background periodically
+    setInterval(()=>{
+      const x = 60 + Math.random()*(window.innerWidth-120);
+      const y = window.innerHeight - 20;
+      makeHeart(x,y);
+    }, 2200);
+
+    // keyboard shortcut: press H to go home
+    document.addEventListener('keydown', (e)=>{ if(e.key.toLowerCase()==='h') showPage('home') });
+
+    // small UX: if someone opens direct anchor, show page
+    const hash = location.hash.replace('#','');
+    if(hash){
+      const target = document.getElementById(hash);
+      if(target) showPage(hash);
+    }
+
+  </script>
+</body>
+
+</html>
